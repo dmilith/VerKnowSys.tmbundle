@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>commands</key>
+	<array>
+		<dict>
+			<key>command</key>
+			<string>selectWord:</string>
+		</dict>
+		<dict>
+			<key>command</key>
+			<string>copySelectionToFindPboard:</string>
+		</dict>
+		<dict>
+			<key>command</key>
+			<string>findNext:</string>
+		</dict>
+	</array>
+	<key>keyEquivalent</key>
+	<string>@e</string>
+	<key>name</key>
+	<string>Go to next word occurence</string>
+	<key>uuid</key>
+	<string>C8C5DF8F-2A89-47EF-B23C-C5F500036D53</string>
+</dict>
+</plist>

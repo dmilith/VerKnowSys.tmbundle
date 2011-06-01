@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>commands</key>
+	<array>
+		<dict>
+			<key>command</key>
+			<string>undo:</string>
+		</dict>
+		<dict>
+			<key>command</key>
+			<string>redo:</string>
+		</dict>
+	</array>
+	<key>keyEquivalent</key>
+	<string>^$</string>
+	<key>name</key>
+	<string>Go to previous change in current file</string>
+	<key>uuid</key>
+	<string>0FC61BDE-18F5-4257-8925-5C610F438C17</string>
+</dict>
+</plist>

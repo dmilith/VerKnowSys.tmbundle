@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>dmilith’s Bundle</string>
+	<key>ordering</key>
+	<array>
+		<string>C8C5DF8F-2A89-47EF-B23C-C5F500036D53</string>
+		<string>5F0A58CD-8B09-4DD2-B17F-4F680E9A9DE7</string>
+		<string>F8B6BC53-731E-40BB-BFAC-13E9685A7B8F</string>
+		<string>041DDE49-B27C-4B5A-9421-F4F4FF8BB136</string>
+		<string>FBA087AB-DEB3-41A0-8E96-173A555CB12F</string>
+		<string>0FC61BDE-18F5-4257-8925-5C610F438C17</string>
+		<string>ADC57EED-073F-4F88-A534-203A5CBF57FF</string>
+		<string>BB87EAC1-37EC-4D74-98B3-B0E01A63FF2B</string>
+	</array>
+	<key>uuid</key>
+	<string>6815EB68-E50D-4A0A-87D8-DBAEEB95A6F4</string>
+</dict>
+</plist>

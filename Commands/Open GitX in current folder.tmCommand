@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>saveModifiedFiles</string>
+	<key>command</key>
+	<string>#!/bin/bash
+# just to remind you of some useful environment variables
+# see Help / Environment Variables for the full list
+#echo File: "$TM_FILEPATH"
+#echo Word: "$TM_CURRENT_WORD"
+#echo Selection: "$TM_SELECTED_TEXT"
+cd $TM_PROJECT_DIRECTORY
+/usr/local/bin/gittower .</string>
+	<key>input</key>
+	<string>none</string>
+	<key>keyEquivalent</key>
+	<string>~@x</string>
+	<key>name</key>
+	<string>Open GitTower in current folder</string>
+	<key>output</key>
+	<string>discard</string>
+	<key>uuid</key>
+	<string>A6B07C7A-16D1-4AAF-A9C4-ED6644469D74</string>
+</dict>
+</plist>
