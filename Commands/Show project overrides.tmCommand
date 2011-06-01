@@ -8,7 +8,7 @@
 	<string>#!/bin/sh
 
 
-"$TM_BUNDLE_SUPPORT/bin/getScalaDefinitions" scala override</string>
+"$TM_BUNDLE_SUPPORT/bin/getScalaDefinitions" override</string>
 	<key>input</key>
 	<string>none</string>
 	<key>keyEquivalent</key>

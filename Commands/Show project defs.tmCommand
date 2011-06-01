@@ -8,7 +8,7 @@
 	<string>#!/bin/sh
 
 
-"$TM_BUNDLE_SUPPORT/bin/getScalaDefinitions" scala "val|var"</string>
+"$TM_BUNDLE_SUPPORT/bin/getScalaDefinitions" "val|var"</string>
 	<key>input</key>
 	<string>none</string>
 	<key>keyEquivalent</key>

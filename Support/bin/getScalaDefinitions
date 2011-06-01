@@ -6,29 +6,22 @@
 #   Daniel (dmilith) Dettlaff
 #   Tymon (teamon) Tobolski
 
-export CODE="scala"
-if [ "$1" != "" ]; then
-    export CODE="$1" # first param: code type. By default "scala"
-fi
-
 export TYPE="class|object|trait"
-if [ "$2" != "" ]; then
-    export TYPE="$2" # second param: what we looking for. By default classes, traits & objects
-fi
-
-WORKING_DIR="$TM_PROJECT_DIRECTORY"
-if [ "$WORKING_DIR" = "" ]; then
-    WORKING_DIR="$(pwd)"
-fi
-LIST="$(find "$WORKING_DIR" -name "*.${CODE}")"
-
-export sub="var entries = ["
-for element in $LIST; do
-    ENTRIES="$(grep -iP -n "(^\s*)(${TYPE})" $element)"
-    if [ "$ENTRIES" != "" ]; then
-        export sub="$sub{file: '$element', entries: '${ENTRIES}'}, "
+    if [ "$1" != "" ]; then
+        export TYPE="$1" # param: what we looking for. By default classes, traits & objects
     fi
-done
-
+export CODE="scala"
+    if [ "$2" != "" ]; then
+        export CODE="$2" # param: code type. By default "scala"
+    fi
+WORKING_DIR="$TM_PROJECT_DIRECTORY"
+LIST="$(find "$WORKING_DIR" -name "*.${CODE}")"
+export sub="var entries = ["
+    for element in $LIST; do
+        ENTRIES="$(grep -iP -n "(^\s*)(${TYPE})" $element)"
+        if [ "$ENTRIES" != "" ]; then
+            export sub="$sub{file: '$element', entries: '${ENTRIES}'}, "
+        fi
+    done
 sub="$sub]; var tmdir = '$TM_PROJECT_DIRECTORY';"
 echo "$sub"

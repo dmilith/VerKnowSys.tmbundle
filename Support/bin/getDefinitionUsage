@@ -6,24 +6,22 @@
 #   Daniel (dmilith) Dettlaff
 #   Tymon (teamon) Tobolski
 
+WORD="$1"
 export CODE="scala"
-if [ "$1" != "" ]; then
-    export CODE="$1" # first param: code type. By default "scala"
-fi
-WORD="$2"
+    if [ "$2" != "" ]; then
+        export CODE="$2" # param: code type. By default "scala"
+    fi
 WORKING_DIR="$TM_PROJECT_DIRECTORY"
-if [ "$WORKING_DIR" = "" ]; then
-    WORKING_DIR="$(pwd)"
-fi
+    if [ "$WORKING_DIR" = "" ]; then
+        WORKING_DIR="$(pwd)"
+    fi
 LIST="$(find "$WORKING_DIR" -name "*.${CODE}")"
 export sub="var entries = ["
-
-for element in $LIST; do
-    ENTRIES="$(grep -iP -n "(new|with|\=)(\s*)${WORD}" $element)"
-    if [ "$ENTRIES" != "" ]; then
-        export sub="$sub{file: '$element', entries: '${ENTRIES}'}, "
-    fi
-done
-
+    for element in $LIST; do
+        ENTRIES="$(grep -iP -n "(new|with|\=)(\s*)${WORD}" $element)"
+        if [ "$ENTRIES" != "" ]; then
+            export sub="$sub{file: '$element', entries: '${ENTRIES}'}, "
+        fi
+    done
 sub="$sub]; var tmdir = '$TM_PROJECT_DIRECTORY';"
 echo "$sub"

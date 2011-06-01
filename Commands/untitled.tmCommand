@@ -15,7 +15,7 @@
 	<key>keyEquivalent</key>
 	<string>@C</string>
 	<key>name</key>
-	<string>Show project classes</string>
+	<string>Show project class/trait/object</string>
 	<key>output</key>
 	<string>showAsHTML</string>
 	<key>uuid</key>

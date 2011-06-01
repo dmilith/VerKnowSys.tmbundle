@@ -8,13 +8,13 @@
 	<string>#!/bin/sh
 
 
-"$TM_BUNDLE_SUPPORT/bin/getScalaDefinitions" scala def</string>
+"$TM_BUNDLE_SUPPORT/bin/getScalaDefinitions" def</string>
 	<key>input</key>
 	<string>none</string>
 	<key>keyEquivalent</key>
 	<string>@M</string>
 	<key>name</key>
-	<string>Show project methods</string>
+	<string>Show project def</string>
 	<key>output</key>
 	<string>showAsHTML</string>
 	<key>uuid</key>
