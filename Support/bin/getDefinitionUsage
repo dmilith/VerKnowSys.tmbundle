@@ -1,0 +1,53 @@
+#!/bin/sh
+#
+# Copyright 2011 - Versatile Knowlege Systems - www.verknowsys.com
+#
+# Authors:
+#   Daniel (dmilith) Dettlaff
+#   Tymon (teamon) Tobolski
+
+export CODE="scala"
+if [ "$1" != "" ]; then
+    export CODE="$1" # first param: code type. By default "scala"
+fi
+
+WORD="$2"
+WORKING_DIR="$TM_PROJECT_DIRECTORY"
+if [ "$WORKING_DIR" = "" ]; then
+    WORKING_DIR="$(pwd)"
+fi
+LIST="$(find "$WORKING_DIR" -name "*.${CODE}")"
+echo "<html style=\"font-size:12px; font-family: monospace\">"
+echo "<head>
+  </head>
+  <body>
+    <div>
+      <input type=\"search\" id=\"search\" />
+    </div>
+    <ul id=\"classes\">"
+sub=""
+for element in $LIST; do
+    ENTRY="$(grep -iP -n "(new|with|\=)(\s*)${WORD}" $element)"
+    if [ "$ENTRY" != "" ]; then
+        LINE="$(echo $ENTRY | cut -d ':' -f1)"
+        CLASS="$(echo $ENTRY | cut -d ':' -f2)"
+        export sub="<li><a href=\"txmt://open/?url=file://${element}&line=$LINE\">\"$WORD\" in $element</a></li>$sub"
+    fi
+done
+echo "$sub"
+echo "</ul>
+    <script type=\"text/javascript\">
+    document.body.onload = function(){
+      document.getElementById(\"search\").focus();
+      document.getElementById(\"search\").onkeyup = function(){
+        var re = new RegExp(this.value.split(\"\").join(\".*\"))
+        console.log(re)
+        var lis = document.getElementById(\"classes\").children
+        for(var i=0; i<lis.length; i++){
+          lis[i].style.display = (re.test(lis[i].children[0].innerText)) ? \"block\" : \"none\"
+        }
+      }
+    }
+    </script>
+  </body>"
+echo "</html>"
