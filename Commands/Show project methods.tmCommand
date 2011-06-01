@@ -8,16 +8,16 @@
 	<string>#!/bin/sh
 
 
-"$TM_BUNDLE_SUPPORT/bin/getScalaDefinitions" scala "val|var"</string>
+"$TM_BUNDLE_SUPPORT/bin/getScalaDefinitions" scala def</string>
 	<key>input</key>
 	<string>none</string>
 	<key>keyEquivalent</key>
-	<string>@E</string>
+	<string>@M</string>
 	<key>name</key>
-	<string>Show project val/var</string>
+	<string>Show project methods</string>
 	<key>output</key>
 	<string>showAsHTML</string>
 	<key>uuid</key>
-	<string>3926DFFE-BAB1-4689-B289-038EF7290E75</string>
+	<string>4C085EFA-192A-4E58-AA78-D19653E84B43</string>
 </dict>
 </plist>
