@@ -21,9 +21,7 @@ export sub="var entries = ["
 for element in $LIST; do
     ENTRY="$(grep -iP -n "(new|with|\=)(\s*)${WORD}" $element)"
     if [ "$ENTRY" != "" ]; then
-        LINE="$(echo $ENTRY | cut -d ':' -f1)"
-        CLASS="$(echo $ENTRY | cut -d ':' -f2)"
-        export sub="$sub{file: '$element', line: ${LINE}, name: '${CLASS}'}, "
+        export sub="$sub{file: '$element', entry: '${ENTRY}'}, "
     fi
 done
 

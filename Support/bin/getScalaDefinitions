@@ -28,7 +28,7 @@ for element in $LIST; do
     if [ "$ENTRY" != "" ]; then
         LINE="$(echo $ENTRY | cut -d ':' -f1)"
         CLASS="$(echo $ENTRY | cut -d ':' -f2)"
-        export sub="$sub{file: '$element', line: ${LINE}, name: '${CLASS}'}, "
+        export sub="$sub{file: '$element', entry: '${ENTRY}'}, "
     fi
 done
 
