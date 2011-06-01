@@ -1,4 +1,10 @@
 #!/bin/sh
+#
+# Copyright 2011 - Versatile Knowlege Systems - www.verknowsys.com
+#
+# Authors:
+#   Daniel (dmilith) Dettlaff
+#   Tymon (teamon) Tobolski
 
 export CODE="scala"
 if [ "$1" != "" ]; then
