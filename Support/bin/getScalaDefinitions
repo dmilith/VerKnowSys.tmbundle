@@ -24,4 +24,4 @@ export sub="var entries = ["
         fi
     done
 sub="$sub]; var tmdir = '$TM_PROJECT_DIRECTORY';"
-echo "$sub"
+echo "$sub" | tr '\n' ' '

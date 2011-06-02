@@ -25,8 +25,8 @@
       window.onresize = resize;
       document.body.onload = function(){
         resize()
-        var re0 = new RegExp("(\\d+): ?(class|trait|object) (\\w+)", "g");
-        var re1 = new RegExp("(\\d+): ?(class|trait|object) (\\w+)");
+        var re0 = new RegExp("(\\d+): *(class|trait|object) (\\w+)", "g");
+        var re1 = new RegExp("(\\d+): *(class|trait|object) (\\w+)");
         var _buf = [];
         var list = document.getElementById("list");
         for(var i=0; i<entries.length; i++){
