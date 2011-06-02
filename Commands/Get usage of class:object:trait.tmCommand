@@ -6,9 +6,8 @@
 	<string>nop</string>
 	<key>command</key>
 	<string>#!/bin/sh
-
-
-"$TM_BUNDLE_SUPPORT/bin/getDefinitionUsage" $TM_CURRENT_WORD</string>
+"$TM_BUNDLE_SUPPORT/bin/scalaCodeAnalyzer" getDefinitionUsage "class|object|trait" scala
+</string>
 	<key>input</key>
 	<string>none</string>
 	<key>keyEquivalent</key>

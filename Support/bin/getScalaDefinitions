@@ -14,7 +14,7 @@ export CODE="scala"
     if [ "$2" != "" ]; then
         export CODE="$2" # param: code type. By default "scala"
     fi
-WORKING_DIR="$TM_PROJECT_DIRECTORY"
+export WORKING_DIR="$TM_PROJECT_DIRECTORY"
 LIST="$(find "$WORKING_DIR" -name "*.${CODE}")"
 export sub="var entries = ["
     for element in $LIST; do
@@ -24,4 +24,4 @@ export sub="var entries = ["
         fi
     done
 sub="$sub]; var tmdir = '$TM_PROJECT_DIRECTORY';"
-echo "$sub"
+echo "$sub" | tr '\n' ' '

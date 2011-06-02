@@ -6,9 +6,8 @@
 	<string>nop</string>
 	<key>command</key>
 	<string>#!/bin/sh
-
-
-"$TM_BUNDLE_SUPPORT/bin/getScalaDefinitions" "val|var"</string>
+"$TM_BUNDLE_SUPPORT/bin/scalaCodeAnalyzer" getScalaDefinitions "val|var" scala
+</string>
 	<key>input</key>
 	<string>none</string>
 	<key>keyEquivalent</key>
