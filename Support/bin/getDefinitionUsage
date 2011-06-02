@@ -15,7 +15,7 @@ export WORKING_DIR="$TM_PROJECT_DIRECTORY"
     if [ "$WORKING_DIR" = "" ]; then
         WORKING_DIR="$(pwd)"
     fi
-export PATTERN="(new|with|\=)(\s+)${WORD}"
+export PATTERN="${WORD}"
 export LIST=""
 for code in $CODE; do
     export LIST="$(find "$WORKING_DIR" -name "*.${code}") $LIST"
@@ -24,7 +24,7 @@ done
 
 export sub="var entries = ["
     for element in $LIST; do
-        ENTRIES="$(grep -iP -n "${PATTERN}" $element)"
+        ENTRIES="$(grep -iP -n "(new|with|\=)(\s+)(${PATTERN})" $element)"
         if [ "$ENTRIES" != "" ]; then
             export sub="$sub{file: '$element', entries: '${ENTRIES}'}, "
         fi

@@ -15,7 +15,7 @@ export CODE="scala java"
         export CODE="$2" # param: code type. By default "scala"
     fi
 export WORKING_DIR="$TM_PROJECT_DIRECTORY"
-export PATTERN="(^\s*)${TYPE}"
+export PATTERN="${TYPE}"
 export LIST=""
 for code in $CODE; do
     export LIST="$(find "$WORKING_DIR" -name "*.${code}") $LIST"
@@ -23,7 +23,7 @@ done
 
 export sub="var entries = ["
     for element in $LIST; do
-        ENTRIES="$(grep -iP -n "(${PATTERN})" $element)"
+        ENTRIES="$(grep -iP -n "(^\s*)(${PATTERN})" $element)"
         if [ "$ENTRIES" != "" ]; then
             export sub="$sub{file: '$element', entries: '${ENTRIES}'}, "
         fi
