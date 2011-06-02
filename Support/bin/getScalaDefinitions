@@ -27,5 +27,5 @@ export sub="var entries = ["
             export sub="$sub{file: '$element', entries: '${ENTRIES}'}, "
         fi
     done
-sub="$sub]; var tmdir = '$TM_PROJECT_DIRECTORY';"
+sub="$sub]; var tmdir = '$TM_PROJECT_DIRECTORY'; var scripttype = 'definitions';"
 echo "$sub" | tr -d '\n'
