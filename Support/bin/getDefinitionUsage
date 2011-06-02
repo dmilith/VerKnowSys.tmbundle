@@ -15,7 +15,12 @@ export WORKING_DIR="$TM_PROJECT_DIRECTORY"
     if [ "$WORKING_DIR" = "" ]; then
         WORKING_DIR="$(pwd)"
     fi
-LIST="$(find "$WORKING_DIR" -name "*.${CODE}")"
+export LIST=""
+for code in $CODE; do
+    export LIST="$(find "$WORKING_DIR" -name "*.${code}") $LIST"
+done
+
+
 export sub="var entries = ["
     for element in $LIST; do
         ENTRIES="$(grep -iP -n "(new|with|\=)(\s*)${WORD}" $element)"
@@ -24,4 +29,4 @@ export sub="var entries = ["
         fi
     done
 sub="$sub]; var tmdir = '$TM_PROJECT_DIRECTORY';"
-echo "$sub" | tr '\n' ' '
+echo "$sub" | tr -d '\n'

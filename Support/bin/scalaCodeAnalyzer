@@ -1,6 +1,5 @@
 #!/bin/sh
 
-pre=`echo $TM_BUNDLE_SUPPORT | tr -d '\\'`
-cat "$pre/templates/view_template_head.xhtml"
-. "$pre/bin/$1" "$2" "$3" "$4"
-cat "$pre/templates/view_template_tail.xhtml"
+cat "${TM_BUNDLE_SUPPORT}/templates/view_template_head.xhtml"
+source "${TM_BUNDLE_SUPPORT}/bin/$1" "$2" "$3" "$4"
+cat "${TM_BUNDLE_SUPPORT}/templates/view_template_tail.xhtml"
