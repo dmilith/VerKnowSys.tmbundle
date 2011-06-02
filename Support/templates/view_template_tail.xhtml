@@ -24,6 +24,7 @@
       }
       window.onresize = resize;
       document.body.onload = function(){
+        var search = document.getElementById("search");
         resize()
         
         var re0 = null;
@@ -37,17 +38,20 @@
         } else if(pattern == "override"){
           re0 = new RegExp("(\\d+):\\s*(override def)\\s+(\\w+)", "g");
           re1 = new RegExp("(\\d+):\\s*(override def)\\s+(\\w+)");
-        } else if(pattern == "var"){
+        } else if(pattern == "val|var"){
           re0 = new RegExp("(\\d+):\\s*(var|val)\\s+(\\w+)", "g");
           re1 = new RegExp("(\\d+):\\s*(var|val)\\s+(\\w+)");
-        } else if(pattern == "class|object|trait"){
-          re0 = new RegExp("(\\d+):\\s*(class|trait|object) (\\w+)", "g");
-          re1 = new RegExp("(\\d+):\\s*(class|trait|object) (\\w+)");
+        } else if(pattern == "class|object|trait|case\s+(class|object)"){
+          re0 = new RegExp("(\\d+):\\s*(?:case\\s+)?(class|trait|object) (\\w+)", "g");
+          re1 = new RegExp("(\\d+):\\s*(?:case\\s+)?(class|trait|object) (\\w+)");
+        } else {
+          re0 = new RegExp("(\\d+)(:)(.+?)(?:\\d:)?", "g");
+          re1 = new RegExp("(\\d+)(:)(.+?)(?:\\d:)?");
+          search.value = pattern;
+          search.disabled = true;
         }
         
-        console.log(re0)
-        console.log(re1)
-        
+
         var _buf = [];
         var list = document.getElementById("list");
         for(var i=0; i<entries.length; i++){
@@ -57,6 +61,7 @@
             var file = e.file;
             for(var j=0; j<matches.length; j++){
               var _e = matches[j].match(re1);
+              console.log(_e)
               _e.push(file);
               _buf.push(_e);
             }
@@ -130,7 +135,7 @@
         
         highlight();
       
-        var search = document.getElementById("search");
+        
         search.onkeyup = function(e){
           e.preventDefault();
           if(e.keyCode == 38 || e.keyCode == 40) return;
