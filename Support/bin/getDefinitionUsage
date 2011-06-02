@@ -24,7 +24,7 @@ done
 
 export sub="var entries = ["
     for element in $LIST; do
-        ENTRIES="$(grep -iP -n "(new|\=)(\s+)(${PATTERN})" $element)"
+        ENTRIES="$(grep -n -iP "(new|with|\=)(\s+)(${PATTERN})" $element)"
         if [ "$ENTRIES" != "" ]; then
             export sub="$sub{file: '$element', entries: '$(echo $ENTRIES | cut -d '{' -f1 | tr -d "\'")'}, "
         fi
