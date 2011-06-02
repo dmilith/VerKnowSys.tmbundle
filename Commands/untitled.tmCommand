@@ -6,14 +6,14 @@
 	<string>nop</string>
 	<key>command</key>
 	<string>#!/bin/sh
-"$TM_BUNDLE_SUPPORT/bin/scalaCodeAnalyzer" getScalaDefinitions "class|object|trait" "scala"
+"$TM_BUNDLE_SUPPORT/bin/scalaCodeAnalyzer" getScalaDefinitions "class|object|trait|case\s+(class|object)" "scala"
 </string>
 	<key>input</key>
 	<string>none</string>
 	<key>keyEquivalent</key>
 	<string>@C</string>
 	<key>name</key>
-	<string>Show project class/trait/object</string>
+	<string>Show project class/case class/trait/object</string>
 	<key>output</key>
 	<string>showAsHTML</string>
 	<key>uuid</key>
