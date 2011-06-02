@@ -24,9 +24,9 @@ done
 
 export sub="var entries = ["
     for element in $LIST; do
-        ENTRIES="$(grep -iP -n "(new|with|\=)(\s+)(${PATTERN})" $element)"
+        ENTRIES="$(grep -iP -n "(new|\=)(\s+)(${PATTERN})" $element)"
         if [ "$ENTRIES" != "" ]; then
-            export sub="$sub{file: '$element', entries: '${ENTRIES}'}, "
+            export sub="$sub{file: '$element', entries: '$(echo $ENTRIES | cut -d '{' -f1 | tr -d "\'")'}, "
         fi
     done
 sub="$sub]; var tmdir = '$TM_PROJECT_DIRECTORY'; var pattern = '$PATTERN';"

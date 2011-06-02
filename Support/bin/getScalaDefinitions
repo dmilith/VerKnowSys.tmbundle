@@ -6,6 +6,8 @@
 #   Daniel (dmilith) Dettlaff
 #   Tymon (teamon) Tobolski
 
+# KNOWN BUGS:
+
 export TYPE="class|object|trait|case\s+(class|object)"
     if [ "$1" != "" ]; then
         export TYPE="$1" # param: what we looking for. By default classes, traits & objects
@@ -23,9 +25,9 @@ done
 
 export sub="var entries = ["
     for element in $LIST; do
-        ENTRIES="$(grep -iP -n "(^\s*)(${PATTERN})" $element)"
+        ENTRIES="$(grep -iP -n "^\s*(${PATTERN})" $element)"
         if [ "$ENTRIES" != "" ]; then
-            export sub="$sub{file: '$element', entries: '$(echo $ENTRIES | cut -d '{' -f1)'}, "
+            export sub="$sub{file: '$element', entries: '$(echo $ENTRIES | cut -d '{' -f1 | tr -d "\'")'}, "
         fi
     done
 sub="$sub]; var tmdir = '$TM_PROJECT_DIRECTORY'; var pattern = '$PATTERN';"
