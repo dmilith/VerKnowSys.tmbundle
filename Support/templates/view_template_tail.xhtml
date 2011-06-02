@@ -1,0 +1,116 @@
+    </script>
+    
+    <style type="text/css">
+      html, body {margin:0; padding:0; font-family: "Geneva";}
+      #list { list-style: none; margin: 0;padding:0;overflow-y: scroll; width: 100%;}
+      #list li {padding: 2px 5px; color: #666; border-top: 1px solid #ddd;}
+      #list li a { color: inherit; text-decoration: none;display:block;}
+      #list li.hover, #list li:hover {background-color: #eee;}
+      #list li div { font-size: 9pt; font-weight: bold; }
+      #list li span { color: #aaa; font-size: 8pt;}
+/*      #list li div em {font-size: 8pt; font-weight: normal; color: #aaa;}*/
+      #search {width: 99%; margin: 5px 0;}
+      #top {
+        width: 100%;
+        height: 30px;
+        text-align: center;
+        background: #efefef;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="top">
+      <input type="search" id="search" />
+    </div>
+    
+    <ul id="list">
+
+    </ul>
+    
+    <script type="text/javascript">
+      function resize(){
+        document.getElementById("list").style.height = (window.innerHeight - 30) + "px";
+      }
+      window.onresize = resize;
+      document.body.onload = function(){
+        resize()
+        var re0 = new RegExp("(\\d+): ?(class|trait|object) (\\w+)", "g");
+        var re1 = new RegExp("(\\d+): ?(class|trait|object) (\\w+)");
+        var list = document.getElementById("list");
+        for(var i=0; i<entries.length; i++){
+          var e = entries[i];
+          var matches = e.entries.match(re0)
+          var file = e.file;
+          for(var j=0; j<matches.length; j++){
+          console.log(file)
+            var entry = matches[j].match(re1)
+            var li = document.createElement("li");
+            var a = document.createElement("a");
+            var div = document.createElement("div");
+            div.innerText = entry[3]; // + "<em>("+entry[2]+")</em>";
+            var span = document.createElement("span");
+            span.innerText = file.replace(tmdir + "/", "") + ":" + entry[1];
+            a.href = "txmt://open/?url=file://" + file;
+            a.appendChild(div);
+            a.appendChild(span);
+            li.appendChild(a);
+            list.appendChild(li);
+          }
+        }
+        
+        var pos = 0;
+        
+        document.body.onkeydown = function(e){
+          switch(e.keyCode){
+            case 40: // down
+              pos++;
+              hightlight();
+              break;
+              
+            case 38: // up
+              if(pos > 0) pos--;
+              hightlight();
+              break;
+          }
+        }
+        
+        function hightlight(){
+          var _a = [];
+          var _c = list.children;
+          for(var _i=0; _i<_c.length; _i++){
+            _c[_i].className = "";
+            if(_c[_i].style.display != "none") _a.push(_c[_i]);
+          }
+          _a[pos].className = "hover";
+        }
+        
+        function open(){
+          var _a = [];
+          var _c = list.children;
+          for(var _i=0; _i<_c.length; _i++){
+            if(_c[_i].style.display != "none") _a.push(_c[_i]);
+          }
+          location.href = _a[pos].children[0];
+        }
+        
+        hightlight();
+      
+        var search = document.getElementById("search");
+        search.onkeyup = function(e){
+          e.preventDefault();
+          if(e.keyCode == 13){
+            open();
+          } else {
+            var re = new RegExp(this.value.split("").join(".*"), "i");
+            var lis = list.children;
+            for(var i=0; i<lis.length; i++){
+              lis[i].style.display = (re.test(lis[i].children[0].children[0].innerText)) ? "block" : "none";
+            }
+            return false;
+          }
+        }
+        search.focus();
+      }
+    </script>
+  </body>
+</html>

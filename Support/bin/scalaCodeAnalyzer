@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# set -x
+
+pre=`echo $TM_BUNDLE_SUPPORT | tr -d '\\'`
+cat "$pre/templates/view_template_head.xhtml"
+# run="$pre/bin/$1"
+# /bin/sh -c "\"$run\" \"$2\" \"$3\" \"$4\""
+/bin/sh -c "/Users/dmilith/Library/Application\ Support/TextMate/Bundles/verknowsys.tmbundle/Support/bin/getScalaDefinitions"
+cat "$pre/templates/view_template_tail.xhtml"

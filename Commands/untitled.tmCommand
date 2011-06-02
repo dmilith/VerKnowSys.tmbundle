@@ -6,9 +6,7 @@
 	<string>nop</string>
 	<key>command</key>
 	<string>#!/bin/sh
-
-
-"$TM_BUNDLE_SUPPORT/bin/getScalaDefinitions"
+"$TM_BUNDLE_SUPPORT/bin/scalaCodeAnalyzer" getScalaDefinition "class|object|trait" scala
 </string>
 	<key>input</key>
 	<string>none</string>
