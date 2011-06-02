@@ -25,18 +25,41 @@
       window.onresize = resize;
       document.body.onload = function(){
         resize()
-        var re0 = new RegExp("(\\d+): *(class|trait|object) (\\w+)", "g");
-        var re1 = new RegExp("(\\d+): *(class|trait|object) (\\w+)");
+        
+        var re0 = null;
+        var re1 = null;
+        
+        console.log(pattern)
+        
+        if(pattern == "def"){
+          re0 = new RegExp("(\\d+):\\s*(def)\\s+(\\w+)", "g");
+          re1 = new RegExp("(\\d+):\\s*(def)\\s+(\\w+)");
+        } else if(pattern == "override"){
+          re0 = new RegExp("(\\d+):\\s*(override def)\\s+(\\w+)", "g");
+          re1 = new RegExp("(\\d+):\\s*(override def)\\s+(\\w+)");
+        } else if(pattern == "var"){
+          re0 = new RegExp("(\\d+):\\s*(var|val)\\s+(\\w+)", "g");
+          re1 = new RegExp("(\\d+):\\s*(var|val)\\s+(\\w+)");
+        } else if(pattern == "class|object|trait"){
+          re0 = new RegExp("(\\d+):\\s*(class|trait|object) (\\w+)", "g");
+          re1 = new RegExp("(\\d+):\\s*(class|trait|object) (\\w+)");
+        }
+        
+        console.log(re0)
+        console.log(re1)
+        
         var _buf = [];
         var list = document.getElementById("list");
         for(var i=0; i<entries.length; i++){
           var e = entries[i];
           var matches = e.entries.match(re0)
-          var file = e.file;
-          for(var j=0; j<matches.length; j++){
-            var _e = matches[j].match(re1);
-            _e.push(file);
-            _buf.push(_e);
+          if(matches){
+            var file = e.file;
+            for(var j=0; j<matches.length; j++){
+              var _e = matches[j].match(re1);
+              _e.push(file);
+              _buf.push(_e);
+            }
           }
         }
         
