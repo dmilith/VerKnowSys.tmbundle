@@ -1,31 +1,22 @@
+
     </script>
     
     <style type="text/css">
       html, body {margin:0; padding:0; font-family: "Geneva";}
       #list { list-style: none; margin: 0;padding:0;overflow-y: scroll; width: 100%;}
-      #list li {padding: 2px 5px; color: #666; border-top: 1px solid #ddd;}
+      #list li {padding: 2px 5px; color: #888; border-top: 1px solid #ddd;}
       #list li a { color: inherit; text-decoration: none;display:block;}
       #list li.hover, #list li:hover {background-color: #eee;}
       #list li div { font-size: 9pt; font-weight: bold; }
+      #list li div em { color: #222; font-style: normal; }
       #list li span { color: #aaa; font-size: 8pt;}
-/*      #list li div em {font-size: 8pt; font-weight: normal; color: #aaa;}*/
       #search {width: 99%; margin: 5px 0;}
-      #top {
-        width: 100%;
-        height: 30px;
-        text-align: center;
-        background: #efefef;
-      }
+      #top { width: 100%; height: 30px; text-align: center; background: #efefef; }
     </style>
   </head>
   <body>
-    <div id="top">
-      <input type="search" id="search" />
-    </div>
-    
-    <ul id="list">
-
-    </ul>
+    <div id="top"><input type="search" id="search" /></div>
+    <ul id="list"></ul>
     
     <script type="text/javascript">
       function resize(){
@@ -34,28 +25,41 @@
       window.onresize = resize;
       document.body.onload = function(){
         resize()
-        var re0 = new RegExp("(\\d+): ?(class|trait|object) (\\w+)", "g");
-        var re1 = new RegExp("(\\d+): ?(class|trait|object) (\\w+)");
+        var re0 = new RegExp("(\\d+): *(class|trait|object) (\\w+)", "g");
+        var re1 = new RegExp("(\\d+): *(class|trait|object) (\\w+)");
+        var _buf = [];
         var list = document.getElementById("list");
         for(var i=0; i<entries.length; i++){
           var e = entries[i];
           var matches = e.entries.match(re0)
           var file = e.file;
           for(var j=0; j<matches.length; j++){
-          console.log(file)
-            var entry = matches[j].match(re1)
-            var li = document.createElement("li");
-            var a = document.createElement("a");
-            var div = document.createElement("div");
-            div.innerText = entry[3]; // + "<em>("+entry[2]+")</em>";
-            var span = document.createElement("span");
-            span.innerText = file.replace(tmdir + "/", "") + ":" + entry[1];
-            a.href = "txmt://open/?url=file://" + file;
-            a.appendChild(div);
-            a.appendChild(span);
-            li.appendChild(a);
-            list.appendChild(li);
+            var _e = matches[j].match(re1);
+            _e.push(file);
+            _buf.push(_e);
           }
+        }
+        
+        _buf.sort(function(a,b){
+          var _a = a[3].toLowerCase();
+          var _b = b[3].toLowerCase();
+          return (_a > _b) ? 1 : -1;
+        })
+        
+        for(var i=0; i<_buf.length; i++){
+          var entry = _buf[i];
+          var li = document.createElement("li");
+          var a = document.createElement("a");
+          var div = document.createElement("div");
+          div.innerText = entry[3]; // + "<em>("+entry[2]+")</em>";
+          var span = document.createElement("span");
+          var file = entry[4];
+          span.innerText = file.replace(tmdir + "/", "") + ":" + entry[1];
+          a.href = "txmt://open/?url=file://" + file + "&line=" + entry[1];
+          a.appendChild(div);
+          a.appendChild(span);
+          li.appendChild(a);
+          list.appendChild(li);
         }
         
         var pos = 0;
@@ -64,24 +68,32 @@
           switch(e.keyCode){
             case 40: // down
               pos++;
-              hightlight();
+              highlight();
               break;
               
             case 38: // up
               if(pos > 0) pos--;
-              hightlight();
+              highlight();
               break;
           }
         }
         
-        function hightlight(){
+        function highlight(){
           var _a = [];
           var _c = list.children;
           for(var _i=0; _i<_c.length; _i++){
             _c[_i].className = "";
             if(_c[_i].style.display != "none") _a.push(_c[_i]);
           }
+          if(pos >= _a.length) pos = _a.length-1;
+            
           _a[pos].className = "hover";
+          
+          if(_a[pos].offsetTop > window.innerHeight + list.scrollTop - 30){
+            list.scrollTop = _a[pos].offsetTop-window.innerHeight+37;
+          } else if(_a[pos].offsetTop < list.scrollTop + 30){
+            list.scrollTop = _a[pos].offsetTop-30;
+          }
         }
         
         function open(){
@@ -93,19 +105,35 @@
           location.href = _a[pos].children[0];
         }
         
-        hightlight();
+        highlight();
       
         var search = document.getElementById("search");
         search.onkeyup = function(e){
           e.preventDefault();
+          if(e.keyCode == 38 || e.keyCode == 40) return;
           if(e.keyCode == 13){
             open();
           } else {
-            var re = new RegExp(this.value.split("").join(".*"), "i");
+            var re2 = new RegExp("(" + this.value.split("").join(")(.*)(") + ")", "i");
             var lis = list.children;
             for(var i=0; i<lis.length; i++){
-              lis[i].style.display = (re.test(lis[i].children[0].children[0].innerText)) ? "block" : "none";
+              var div = lis[i].children[0].children[0];
+              var match = div.innerText.match(re2);
+              if(match){
+                var label = "";
+                for(var j=1; j<match.length; j+=1){
+                  label += (j%2==1) ? "<em>"+match[j]+"</em>" : match[j];
+                }
+                div.innerHTML = div.innerText.replace(match[0], label);
+                lis[i].style.display = "block";
+              } else {
+                lis[i].style.display = "none";                
+              }
+
+              
             }
+            pos = 0;
+            highlight();
             return false;
           }
         }
