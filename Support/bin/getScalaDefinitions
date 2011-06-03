@@ -7,6 +7,7 @@
 #   Tymon (teamon) Tobolski
 
 # KNOWN BUGS:
+#   issue related to format of "NUMBER:" in source files
 
 export TYPE="class|object|trait|case\s+(class|object)"
     if [ "$1" != "" ]; then
@@ -27,7 +28,7 @@ export sub="var entries = ["
     for element in $LIST; do
         ENTRIES="$(grep -iP -n "^\s*(${PATTERN})" $element)"
         if [ "$ENTRIES" != "" ]; then
-            export sub="$sub{file: '$element', entries: '$(echo $ENTRIES | cut -d '{' -f1 | tr -d "\'")'}, "
+            export sub="$sub{file: '$element', entries: '$(echo $ENTRIES | tr -d "\'")'}, "
         fi
     done
 sub="$sub]; var tmdir = '$TM_PROJECT_DIRECTORY'; var pattern = '$PATTERN';"
