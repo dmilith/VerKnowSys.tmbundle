@@ -6,7 +6,7 @@
 	<string>nop</string>
 	<key>command</key>
 	<string>#!/bin/sh
-"$TM_BUNDLE_SUPPORT/bin/scalaCodeAnalyzer" getScalaDefinitions "class|object|trait|case\s+(class|object)" "scala"
+"$TM_BUNDLE_SUPPORT/bin/scalaCodeAnalyzer" getScalaDefinitions "class|object|trait|(case|public|abstract|sealed|protected|private)\s+(class|object)" "scala java"
 </string>
 	<key>input</key>
 	<string>none</string>
