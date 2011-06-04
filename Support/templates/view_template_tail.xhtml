@@ -29,9 +29,7 @@
         
         var re0 = null;
         var re1 = null;
-        
-        console.log(pattern)
-        
+                
         if(pattern == "def"){
           re0 = new RegExp("(\\d+):\\s*(def)\\s+(\\w+)", "g");
           re1 = new RegExp("(\\d+):\\s*(def)\\s+(\\w+)");
@@ -41,16 +39,15 @@
         } else if(pattern == "val|var"){
           re0 = new RegExp("(\\d+):\\s*(var|val)\\s+(\\w+)", "g");
           re1 = new RegExp("(\\d+):\\s*(var|val)\\s+(\\w+)");
-        } else if(pattern == "class|object|trait|case\s+(class|object)"){
-          re0 = new RegExp("(\\d+):\\s*(?:case\\s+)?(class|trait|object) (\\w+)", "g");
-          re1 = new RegExp("(\\d+):\\s*(?:case\\s+)?(class|trait|object) (\\w+)");
+        } else if(pattern == "class|object|trait|(case|public|abstract|sealed|protected|private)\s+(class|object)"){
+          re0 = new RegExp("(\\d+):\\s*(?:(?:case|public|protected|private|abstract|sealed)\\s+)?(class|trait|object) (\\w+)", "g");
+          re1 = new RegExp("(\\d+):\\s*(?:(?:case|public|protected|private|abstract|sealed)\\s+)?(class|trait|object) (\\w+)");
         } else {
           re0 = new RegExp("(\\d+)(:)(.+?)(?:\\d:)?", "g");
           re1 = new RegExp("(\\d+)(:)(.+?)(?:\\d:)?");
           search.value = pattern;
           search.disabled = true;
         }
-        
 
         var _buf = [];
         var list = document.getElementById("list");
