@@ -9,7 +9,7 @@
 # KNOWN BUGS:
 #   issue related to format of "NUMBER:" in source files
 
-export TYPE="class|object|trait|(case|public|private|protected)\s+(class|object)"
+export TYPE="class|object|trait|(case|public|abstract|sealed|protected|private)\s+(class|object)"
     if [ "$1" != "" ]; then
         export TYPE="$1" # param: what we looking for. By default classes, traits & objects
     fi
