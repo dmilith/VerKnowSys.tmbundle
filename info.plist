@@ -2,5 +2,9 @@
 	contactName = "Daniel (dmilith) Dettlaff";
 	description = "Versatile Knowlege Systems bundle.";
 	name = "VerKnowSys";
+	source = {
+		method = "git";
+		url = "git://github.com/dmilith/VerKnowSys.tmbundle.git";
+	};
 	uuid = "A4380B27-F366-4C70-A542-B00D26ED997F";
 }
