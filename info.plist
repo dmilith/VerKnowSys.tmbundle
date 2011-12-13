@@ -1,25 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-	<key>name</key>
-	<string>VerKnowSys</string>
-	<key>ordering</key>
-	<array>
-		<string>C8C5DF8F-2A89-47EF-B23C-C5F500036D53</string>
-		<string>5F0A58CD-8B09-4DD2-B17F-4F680E9A9DE7</string>
-		<string>F8B6BC53-731E-40BB-BFAC-13E9685A7B8F</string>
-		<string>041DDE49-B27C-4B5A-9421-F4F4FF8BB136</string>
-		<string>FBA087AB-DEB3-41A0-8E96-173A555CB12F</string>
-		<string>0FC61BDE-18F5-4257-8925-5C610F438C17</string>
-		<string>A6B07C7A-16D1-4AAF-A9C4-ED6644469D74</string>
-		<string>8153F576-32F5-42BE-8B5F-AE916EB4EB7C</string>
-		<string>3926DFFE-BAB1-4689-B289-038EF7290E75</string>
-		<string>4C085EFA-192A-4E58-AA78-D19653E84B43</string>
-		<string>A568AD9A-719A-4B30-9DB0-2FD2098CA82A</string>
-		<string>0CC8980C-E1C7-4622-A8B4-05ECFE221DD9</string>
-	</array>
-	<key>uuid</key>
-	<string>6815EB68-E50D-4A0A-87D8-DBAEEB95A6F4</string>
-</dict>
-</plist>
+{	"contactEmailRot13" = "dmilith@verknowsys.com";
+	contactName = "Daniel (dmilith) Dettlaff";
+	description = "Versatile Knowlege Systems bundle.";
+	name = "VerKnowSys";
+	uuid = "A4380B27-F366-4C70-A542-B00D26ED997F";
+}
